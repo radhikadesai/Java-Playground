@@ -54,4 +54,19 @@ public class BinaryTree{
         }
         System.out.println("Node --> " + node.getData());
     }
+
+    public List<String> printAllPathsFromRoot(Node node,StringBuilder current,List<String> paths){
+        if(node == null){
+            return null;
+        }
+        /*In the stack of the recursive calls, will backtrack*/
+        StringBuilder currentPath = new StringBuilder(current);
+        currentPath.append(node.getData());
+        if(node.getLeft()==null || node.getRight()==null){
+            paths.add(currentPath.toString());
+        }
+        printAllPathsFromRoot(node.getLeft(),currentPath,paths);
+        printAllPathsFromRoot(node.getRight(),currentPath,paths);
+        return paths;
+    }
 }
